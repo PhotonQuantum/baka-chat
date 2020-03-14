@@ -1,0 +1,30 @@
+FROM python:3.7.6-slim as builder
+
+MAINTAINER LightQuantum
+
+RUN pip install --user --upgrade pip
+
+RUN pip install --user torch==1.4.0+cu92 torchvision==0.5.0+cu92 -f https://download.pytorch.org/whl/torch_stable.html
+
+RUN pip install --user oss2 ftfy jieba
+
+RUN pip install --user loguru
+
+RUN apt-get update \
+&& apt-get install gcc -y \
+&& apt-get clean
+RUN pip install --user comet_ml
+
+FROM python:3.7.6-slim as app
+
+MAINTAINER LightQuantum
+
+COPY --from=builder /root/.local /root/.local
+
+WORKDIR /train
+
+COPY ./baka_chat ./baka_chat
+
+ENV PRODUCTION_MODE=yes
+
+CMD ["python", "-m", "baka_chat.train"]
