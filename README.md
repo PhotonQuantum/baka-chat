@@ -1,12 +1,12 @@
 # Baka Chat
 
+> Deprecated
+>
+> This project is being rewritten. Please have a look at [Neo Baka Chat](https://github.com/photonquantum/neo_baka_chat).
+
 A toy chat bot which uses a simple LSTM model to generate replies to inputs.
 
 This project uses Aliyun OSS to store datasets and models.
-
-> WIP
->
-> This readme is under construction, and I'm writing a blog post on this toy project.
 
 ## Installation
 
